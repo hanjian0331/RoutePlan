@@ -15,11 +15,9 @@
 		7423C7F724B9F3E1001FFD3F /* LaunchScreen.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 7423C7F524B9F3E1001FFD3F /* LaunchScreen.storyboard */; };
 		7464744624BAABC00083FE52 /* AddLocationTableViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7464744524BAABC00083FE52 /* AddLocationTableViewController.swift */; };
 		7464744A24BAF2410083FE52 /* SearchResultTableView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7464744924BAF2410083FE52 /* SearchResultTableView.swift */; };
-		DFF161A282EB5CB37C4B93E6 /* Pods_RoutePlan.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = E2345D1D21D0318521323648 /* Pods_RoutePlan.framework */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
-		0C68ED72B69F77ECAEE9C549 /* Pods-RoutePlan.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-RoutePlan.debug.xcconfig"; path = "Target Support Files/Pods-RoutePlan/Pods-RoutePlan.debug.xcconfig"; sourceTree = "<group>"; };
 		7423C7E724B9F3E0001FFD3F /* RoutePlan.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = RoutePlan.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		7423C7EA24B9F3E0001FFD3F /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
 		7423C7EC24B9F3E0001FFD3F /* SceneDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SceneDelegate.swift; sourceTree = "<group>"; };
@@ -31,8 +29,6 @@
 		7423C7FF24B9F989001FFD3F /* RoutePlan-Bridging-Header.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = "RoutePlan-Bridging-Header.h"; sourceTree = "<group>"; };
 		7464744524BAABC00083FE52 /* AddLocationTableViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AddLocationTableViewController.swift; sourceTree = "<group>"; };
 		7464744924BAF2410083FE52 /* SearchResultTableView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SearchResultTableView.swift; sourceTree = "<group>"; };
-		7AA5DF76F9E5D6A16358E11D /* Pods-RoutePlan.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-RoutePlan.release.xcconfig"; path = "Target Support Files/Pods-RoutePlan/Pods-RoutePlan.release.xcconfig"; sourceTree = "<group>"; };
-		E2345D1D21D0318521323648 /* Pods_RoutePlan.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Pods_RoutePlan.framework; sourceTree = BUILT_PRODUCTS_DIR; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -40,28 +36,18 @@
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-				DFF161A282EB5CB37C4B93E6 /* Pods_RoutePlan.framework in Frameworks */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
 /* End PBXFrameworksBuildPhase section */
 
 /* Begin PBXGroup section */
-		14642512EB611C9CF6987F97 /* Frameworks */ = {
-			isa = PBXGroup;
-			children = (
-				E2345D1D21D0318521323648 /* Pods_RoutePlan.framework */,
-			);
-			name = Frameworks;
-			sourceTree = "<group>";
-		};
 		7423C7DE24B9F3E0001FFD3F = {
 			isa = PBXGroup;
 			children = (
 				7423C7E924B9F3E0001FFD3F /* RoutePlan */,
 				7423C7E824B9F3E0001FFD3F /* Products */,
 				E861A186C7422399ADFA3ABC /* Pods */,
-				14642512EB611C9CF6987F97 /* Frameworks */,
 			);
 			sourceTree = "<group>";
 		};
@@ -93,8 +79,6 @@
 		E861A186C7422399ADFA3ABC /* Pods */ = {
 			isa = PBXGroup;
 			children = (
-				0C68ED72B69F77ECAEE9C549 /* Pods-RoutePlan.debug.xcconfig */,
-				7AA5DF76F9E5D6A16358E11D /* Pods-RoutePlan.release.xcconfig */,
 			);
 			path = Pods;
 			sourceTree = "<group>";
@@ -106,11 +90,9 @@
 			isa = PBXNativeTarget;
 			buildConfigurationList = 7423C7FB24B9F3E1001FFD3F /* Build configuration list for PBXNativeTarget "RoutePlan" */;
 			buildPhases = (
-				B642F5D47FC97F826983DCDD /* [CP] Check Pods Manifest.lock */,
 				7423C7E324B9F3E0001FFD3F /* Sources */,
 				7423C7E424B9F3E0001FFD3F /* Frameworks */,
 				7423C7E524B9F3E0001FFD3F /* Resources */,
-				95BFE4E6AD7222AB4F4E4469 /* [CP] Copy Pods Resources */,
 			);
 			buildRules = (
 			);
@@ -167,48 +149,6 @@
 			runOnlyForDeploymentPostprocessing = 0;
 		};
 /* End PBXResourcesBuildPhase section */
-
-/* Begin PBXShellScriptBuildPhase section */
-		95BFE4E6AD7222AB4F4E4469 /* [CP] Copy Pods Resources */ = {
-			isa = PBXShellScriptBuildPhase;
-			buildActionMask = 2147483647;
-			files = (
-			);
-			inputFileListPaths = (
-				"${PODS_ROOT}/Target Support Files/Pods-RoutePlan/Pods-RoutePlan-resources-${CONFIGURATION}-input-files.xcfilelist",
-			);
-			name = "[CP] Copy Pods Resources";
-			outputFileListPaths = (
-				"${PODS_ROOT}/Target Support Files/Pods-RoutePlan/Pods-RoutePlan-resources-${CONFIGURATION}-output-files.xcfilelist",
-			);
-			runOnlyForDeploymentPostprocessing = 0;
-			shellPath = /bin/sh;
-			shellScript = "\"${PODS_ROOT}/Target Support Files/Pods-RoutePlan/Pods-RoutePlan-resources.sh\"\n";
-			showEnvVarsInLog = 0;
-		};
-		B642F5D47FC97F826983DCDD /* [CP] Check Pods Manifest.lock */ = {
-			isa = PBXShellScriptBuildPhase;
-			buildActionMask = 2147483647;
-			files = (
-			);
-			inputFileListPaths = (
-			);
-			inputPaths = (
-				"${PODS_PODFILE_DIR_PATH}/Podfile.lock",
-				"${PODS_ROOT}/Manifest.lock",
-			);
-			name = "[CP] Check Pods Manifest.lock";
-			outputFileListPaths = (
-			);
-			outputPaths = (
-				"$(DERIVED_FILE_DIR)/Pods-RoutePlan-checkManifestLockResult.txt",
-			);
-			runOnlyForDeploymentPostprocessing = 0;
-			shellPath = /bin/sh;
-			shellScript = "diff \"${PODS_PODFILE_DIR_PATH}/Podfile.lock\" \"${PODS_ROOT}/Manifest.lock\" > /dev/null\nif [ $? != 0 ] ; then\n    # print error to STDERR\n    echo \"error: The sandbox is not in sync with the Podfile.lock. Run 'pod install' or update your CocoaPods installation.\" >&2\n    exit 1\nfi\n# This output is used by Xcode 'outputs' to avoid re-running this script phase.\necho \"SUCCESS\" > \"${SCRIPT_OUTPUT_FILE_0}\"\n";
-			showEnvVarsInLog = 0;
-		};
-/* End PBXShellScriptBuildPhase section */
 
 /* Begin PBXSourcesBuildPhase section */
 		7423C7E324B9F3E0001FFD3F /* Sources */ = {
@@ -361,7 +301,6 @@
 		};
 		7423C7FC24B9F3E1001FFD3F /* Debug */ = {
 			isa = XCBuildConfiguration;
-			baseConfigurationReference = 0C68ED72B69F77ECAEE9C549 /* Pods-RoutePlan.debug.xcconfig */;
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				CLANG_ENABLE_MODULES = YES;
@@ -387,7 +326,6 @@
 		};
 		7423C7FD24B9F3E1001FFD3F /* Release */ = {
 			isa = XCBuildConfiguration;
-			baseConfigurationReference = 7AA5DF76F9E5D6A16358E11D /* Pods-RoutePlan.release.xcconfig */;
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				CLANG_ENABLE_MODULES = YES;

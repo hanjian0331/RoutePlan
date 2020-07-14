@@ -10,8 +10,8 @@ import UIKit
 
 class SearchResultTableView: UITableView, UITableViewDelegate, UITableViewDataSource {
 
-    var tableData = [AMapTip]()
-    var didSelectTip: ((AMapTip)->())?
+    var tableData = [Any]()
+    var didSelectTip: ((Any)->())?
     
     override init(frame: CGRect, style: UITableView.Style) {
         super.init(frame: frame, style: style)
@@ -67,10 +67,10 @@ class SearchResultTableView: UITableView, UITableViewDelegate, UITableViewDataSo
         
         if !tableData.isEmpty {
             
-            let tip = tableData[indexPath.row]
+//            let tip = tableData[indexPath.row]
             
-            cell!.textLabel?.text = tip.name
-            cell!.detailTextLabel?.text = tip.address
+//            cell!.textLabel?.text = tip.name
+//            cell!.detailTextLabel?.text = tip.address
         }
         
         return cell!

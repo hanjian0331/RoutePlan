@@ -10,10 +10,8 @@ import UIKit
 
 class AddLocationTableViewController: UITableViewController {
     
-    let search = AMapSearchAPI()
-    var currentRequest: AMapInputTipsSearchRequest?
     let searchController = UISearchController(searchResultsController: nil)
-    var tips = [AMapTip]()
+    var tips = [Any]()
     
     lazy var searchResultTableView : SearchResultTableView = {
         let searchResultTableView = SearchResultTableView(frame: self.searchController.view.bounds, style: .plain)
@@ -36,7 +34,6 @@ class AddLocationTableViewController: UITableViewController {
 //        self.navigationItem.rightBarButtonItem = self.editButtonItem
 //        tableView.allowsSelection = false
         
-        search?.delegate = self
         searchController.searchBar.placeholder = "input address"
         searchController.searchResultsUpdater = self
         navigationItem.searchController = searchController
@@ -50,11 +47,7 @@ class AddLocationTableViewController: UITableViewController {
         if keyword?.count == 0 {
             return
         }
-        
-        let request = AMapInputTipsSearchRequest()
-        request.keywords = keyword
-        currentRequest = request
-        search?.aMapInputTipsSearch(request)
+
     }
     
     // MARK: - Table view data source
@@ -70,10 +63,10 @@ class AddLocationTableViewController: UITableViewController {
             return cell
         }
 
-        let tip = tips[indexPath.row]
-        
-        cell.textLabel?.text = tip.name
-        cell.detailTextLabel?.text = tip.address
+//        let tip = tips[indexPath.row]
+    //
+    //        cell.textLabel?.text = tip.name
+    //        cell.detailTextLabel?.text = tip.address
 
         return cell
     }
@@ -141,26 +134,5 @@ extension AddLocationTableViewController: UISearchControllerDelegate,UISearchRes
         if searchController.isActive && searchController.searchBar.text != "" {
             searchController.searchBar.placeholder = searchController.searchBar.text
         }
-    }
-}
-
-extension AddLocationTableViewController: AMapSearchDelegate {
-    
-    func onInputTipsSearchDone(_ request: AMapInputTipsSearchRequest!, response: AMapInputTipsSearchResponse!) {
-        if currentRequest == nil || currentRequest! != request {
-            return
-        }
-        if response.count == 0 {
-            return
-        }
-        searchResultTableView.tableData.removeAll()
-        for aTip in response.tips {
-            searchResultTableView.tableData.append(aTip)
-        }
-        searchResultTableView.reloadData()
-    }
-    
-    func aMapSearchRequest(_ request: Any!, didFailWithError error: Error!) {
-        print("Error:\(String(describing: error))")
     }
 }
