@@ -2,7 +2,7 @@
 //  AppDelegate.swift
 //  RoutePlan
 //
-//  Created by hanjian on 2020/7/15.
+//  Created by hanjian on 2020/7/11.
 //  Copyright © 2020 hanjian. All rights reserved.
 //
 
@@ -14,7 +14,8 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
 
 
     func application(_ application: UIApplication, didFinishLaunchingWithOptions launchOptions: [UIApplication.LaunchOptionsKey: Any]?) -> Bool {
-        // Override point for customization after application launch.
+        // Override point for customization after application launch
+        
         return true
     }
 
