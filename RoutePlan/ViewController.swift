@@ -29,6 +29,10 @@ class ViewController: UIViewController {
             let region = MKCoordinateRegion(center: CLLocationCoordinate2D(latitude: latitude, longitude: longitude), span: span)
             mapView.setRegion(region, animated: true)
         }
+        
+//        let searchLocationViewController = SearchLocationViewController()
+//        view.addSubview(searchLocationViewController.view)
+//        self.addChild(searchLocationViewController)
     }
 
     
