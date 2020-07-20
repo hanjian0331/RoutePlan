@@ -31,10 +31,16 @@ class ViewController: UIViewController {
             mapView.setRegion(region, animated: true)
         }
         
-        resultSearchController = UISearchController(searchResultsController: nil)
-//        resultSearchController?.searchResultsUpdater = locationSearchTable
+        let locationsTableViewController = LocationsTableViewController()
+        locationsTableViewController.mapView = mapView
+        resultSearchController = UISearchController(searchResultsController: locationsTableViewController)
+        resultSearchController?.searchResultsUpdater = locationsTableViewController
+        resultSearchController?.hidesNavigationBarDuringPresentation = false
+        definesPresentationContext = true
+        
         let searchBar = resultSearchController!.searchBar
-        searchBar.placeholder = "Search for places"
+        searchBar.placeholder = "搜索地址"
+        searchBar.sizeToFit()
         navigationItem.titleView = searchBar
     }
 
@@ -68,4 +74,11 @@ extension ViewController : CLLocationManagerDelegate {
         print("error:: \(error)")
     }
     
+}
+
+extension ViewController: MKMapViewDelegate {
+    
+    func mapView(_ mapView: MKMapView, didSelect view: MKAnnotationView) {
+        
+    }
 }

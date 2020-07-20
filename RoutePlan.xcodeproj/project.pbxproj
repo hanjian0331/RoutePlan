@@ -7,6 +7,8 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
+		7473E16424C5CE3300801B40 /* LocationsTableViewController.xib in Resources */ = {isa = PBXBuildFile; fileRef = 7473E16224C5CE3300801B40 /* LocationsTableViewController.xib */; };
+		7473E16524C5CE3300801B40 /* LocationsTableViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7473E16324C5CE3300801B40 /* LocationsTableViewController.swift */; };
 		74A1373024BF423700148250 /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 74A1372F24BF423700148250 /* AppDelegate.swift */; };
 		74A1373224BF423700148250 /* SceneDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 74A1373124BF423700148250 /* SceneDelegate.swift */; };
 		74A1373424BF423700148250 /* ViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 74A1373324BF423700148250 /* ViewController.swift */; };
@@ -17,6 +19,8 @@
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
+		7473E16224C5CE3300801B40 /* LocationsTableViewController.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = LocationsTableViewController.xib; sourceTree = "<group>"; };
+		7473E16324C5CE3300801B40 /* LocationsTableViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = LocationsTableViewController.swift; sourceTree = "<group>"; };
 		74A1372C24BF423700148250 /* RoutePlan.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = RoutePlan.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		74A1372F24BF423700148250 /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
 		74A1373124BF423700148250 /* SceneDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SceneDelegate.swift; sourceTree = "<group>"; };
@@ -67,6 +71,8 @@
 				74A1373824BF423700148250 /* Assets.xcassets */,
 				74A1373A24BF423700148250 /* LaunchScreen.storyboard */,
 				74A1373D24BF423700148250 /* Info.plist */,
+				7473E16324C5CE3300801B40 /* LocationsTableViewController.swift */,
+				7473E16224C5CE3300801B40 /* LocationsTableViewController.xib */,
 			);
 			path = RoutePlan;
 			sourceTree = "<group>";
@@ -137,6 +143,7 @@
 			isa = PBXResourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				7473E16424C5CE3300801B40 /* LocationsTableViewController.xib in Resources */,
 				74A1373C24BF423700148250 /* LaunchScreen.storyboard in Resources */,
 				74A1373924BF423700148250 /* Assets.xcassets in Resources */,
 				74A1373724BF423700148250 /* Main.storyboard in Resources */,
@@ -150,6 +157,7 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				7473E16524C5CE3300801B40 /* LocationsTableViewController.swift in Sources */,
 				74A1373424BF423700148250 /* ViewController.swift in Sources */,
 				74A1373024BF423700148250 /* AppDelegate.swift in Sources */,
 				74A1373224BF423700148250 /* SceneDelegate.swift in Sources */,
