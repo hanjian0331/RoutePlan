@@ -12,6 +12,7 @@ import MapKit
 class ViewController: UIViewController {
 
     @IBOutlet weak var mapView: MKMapView!
+    var resultSearchController:UISearchController? = nil
     let locationManager = CLLocationManager()
     
     override func viewDidLoad() {
@@ -30,11 +31,17 @@ class ViewController: UIViewController {
             mapView.setRegion(region, animated: true)
         }
         
-//        let searchLocationViewController = SearchLocationViewController()
-//        view.addSubview(searchLocationViewController.view)
-//        self.addChild(searchLocationViewController)
+        resultSearchController = UISearchController(searchResultsController: nil)
+//        resultSearchController?.searchResultsUpdater = locationSearchTable
+        let searchBar = resultSearchController!.searchBar
+        searchBar.placeholder = "Search for places"
+        navigationItem.titleView = searchBar
     }
 
+    
+    @IBAction func locationButtonAction(_ sender: UIButton) {
+        locationManager.requestLocation()
+    }
     
     deinit {
         UserDefaults.standard.set(mapView.region.center.latitude, forKey: "latitude")
