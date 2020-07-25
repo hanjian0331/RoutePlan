@@ -1,5 +1,5 @@
 //
-//  ViewController.swift
+//  MapViewController.swift
 //  RoutePlan
 //
 //  Created by hanjian on 2020/7/15.
@@ -9,15 +9,15 @@
 import UIKit
 import MapKit
 
-class ViewController: UIViewController {
+class MapViewController: UIViewController {
 
     @IBOutlet weak var mapView: MKMapView!
-    var resultSearchController:UISearchController? = nil
+//    var resultSearchController:UISearchController? = nil
     let locationManager = CLLocationManager()
     
     override func viewDidLoad() {
         super.viewDidLoad()
-        // Do any additional setup after loading the view.
+        
         locationManager.delegate = self
         locationManager.desiredAccuracy = kCLLocationAccuracyBest
         locationManager.requestWhenInUseAuthorization()
@@ -31,17 +31,17 @@ class ViewController: UIViewController {
             mapView.setRegion(region, animated: true)
         }
         
-        let locationsTableViewController = LocationsTableViewController()
-        locationsTableViewController.mapView = mapView
-        resultSearchController = UISearchController(searchResultsController: locationsTableViewController)
-        resultSearchController?.searchResultsUpdater = locationsTableViewController
-        resultSearchController?.hidesNavigationBarDuringPresentation = false
-        definesPresentationContext = true
-        
-        let searchBar = resultSearchController!.searchBar
-        searchBar.placeholder = "搜索地址"
-        searchBar.sizeToFit()
-        navigationItem.titleView = searchBar
+//        let locationsTableViewController = LocationsTableViewController()
+//        locationsTableViewController.mapView = mapView
+//        resultSearchController = UISearchController(searchResultsController: locationsTableViewController)
+//        resultSearchController?.searchResultsUpdater = locationsTableViewController
+//        resultSearchController?.hidesNavigationBarDuringPresentation = false
+//        definesPresentationContext = true
+//        
+//        let searchBar = resultSearchController!.searchBar
+//        searchBar.placeholder = "搜索地址"
+//        searchBar.sizeToFit()
+//        navigationItem.titleView = searchBar
     }
 
     
@@ -55,7 +55,7 @@ class ViewController: UIViewController {
     }
 }
 
-extension ViewController : CLLocationManagerDelegate {
+extension MapViewController : CLLocationManagerDelegate {
     func locationManager(_ manager: CLLocationManager, didChangeAuthorization status: CLAuthorizationStatus) {
         if status == .authorizedWhenInUse {
             locationManager.requestLocation()
@@ -76,7 +76,7 @@ extension ViewController : CLLocationManagerDelegate {
     
 }
 
-extension ViewController: MKMapViewDelegate {
+extension MapViewController: MKMapViewDelegate {
     
     func mapView(_ mapView: MKMapView, didSelect view: MKAnnotationView) {
         
