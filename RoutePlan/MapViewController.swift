@@ -12,7 +12,6 @@ import MapKit
 class MapViewController: UIViewController {
 
     @IBOutlet weak var mapView: MKMapView!
-//    var resultSearchController:UISearchController? = nil
     let locationManager = CLLocationManager()
     
     override func viewDidLoad() {
@@ -37,7 +36,7 @@ class MapViewController: UIViewController {
 //        resultSearchController?.searchResultsUpdater = locationsTableViewController
 //        resultSearchController?.hidesNavigationBarDuringPresentation = false
 //        definesPresentationContext = true
-//        
+//
 //        let searchBar = resultSearchController!.searchBar
 //        searchBar.placeholder = "搜索地址"
 //        searchBar.sizeToFit()
@@ -80,5 +79,13 @@ extension MapViewController: MKMapViewDelegate {
     
     func mapView(_ mapView: MKMapView, didSelect view: MKAnnotationView) {
         
+    }
+}
+
+extension MapViewController: SearchLocationDelegate {
+    var getMapView: MKMapView? {
+        get {
+            return mapView
+        }
     }
 }

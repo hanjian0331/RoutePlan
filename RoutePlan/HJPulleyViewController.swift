@@ -14,6 +14,11 @@ class HJPulleyViewController: PulleyViewController {
         super.viewDidLoad()
 
         displayMode = .automatic
+        
+        let map = primaryContentViewController as! MapViewController
+        let search = drawerContentViewController as! SearchLocationViewController
+        search.delegate = map
+        
     }
     
 

@@ -7,11 +7,35 @@
 //
 
 import Pulley
+import MapKit
+
+protocol SearchLocationDelegate: class {
+    var getMapView: MKMapView? { get }
+    
+}
 
 class SearchLocationViewController: UIViewController {
-
+    
+    weak var delegate: SearchLocationDelegate?
+    
+    @IBOutlet var gripperView: UIView!
+    @IBOutlet var gripperTopConstraint: NSLayoutConstraint!
+    @IBOutlet var searchBar: UISearchBar!
+    @IBOutlet var tableView: UITableView!
+    fileprivate var drawerBottomSafeArea: CGFloat = 0.0 {
+        didSet {
+            self.loadViewIfNeeded()
+            // We'll configure our UI to respect the safe area. In our small demo app, we just want to adjust the contentInset for the tableview.
+            tableView.contentInset = UIEdgeInsets(top: 0.0, left: 0.0, bottom: drawerBottomSafeArea, right: 0.0)
+        }
+    }
+    
+    var mapItems:[MKMapItem] = []
+    
     override func viewDidLoad() {
         super.viewDidLoad()
+        
+        gripperView.layer.cornerRadius = 2.5
 
     }
 
@@ -39,7 +63,7 @@ extension SearchLocationViewController: PulleyDrawerViewControllerDelegate {
     func drawerPositionDidChange(drawer: PulleyViewController, bottomSafeArea: CGFloat)
     {
         // We want to know about the safe area to customize our UI. Our UI customization logic is in the didSet for this variable.
-//        drawerBottomSafeArea = bottomSafeArea
+        drawerBottomSafeArea = bottomSafeArea
         
         /*
          Some explanation for what is happening here:
@@ -55,15 +79,15 @@ extension SearchLocationViewController: PulleyDrawerViewControllerDelegate {
 //        {
 //            headerSectionHeightConstraint.constant = 68.0
 //        }
-//
-//        // Handle tableview scrolling / searchbar editing
-//
-//        tableView.isScrollEnabled = drawer.drawerPosition == .open || drawer.currentDisplayMode == .panel
-//
-//        if drawer.drawerPosition != .open
-//        {
-//            searchBar.resignFirstResponder()
-//        }
+
+        // Handle tableview scrolling / searchbar editing
+
+        tableView.isScrollEnabled = drawer.drawerPosition == .open || drawer.currentDisplayMode == .panel
+
+        if drawer.drawerPosition != .open
+        {
+            searchBar.resignFirstResponder()
+        }
 //
 //        if drawer.currentDisplayMode == .panel
 //        {
@@ -80,7 +104,73 @@ extension SearchLocationViewController: PulleyDrawerViewControllerDelegate {
     /// This function is called when the current drawer display mode changes. Make UI customizations here.
     func drawerDisplayModeDidChange(drawer: PulleyViewController) {
         
-//        print("Drawer: \(drawer.currentDisplayMode)")
-//        gripperTopConstraint.isActive = drawer.currentDisplayMode == .drawer
+        gripperTopConstraint.isActive = drawer.currentDisplayMode == .drawer
+    }
+}
+
+extension SearchLocationViewController: UISearchBarDelegate {
+    
+    func searchBarTextDidBeginEditing(_ searchBar: UISearchBar) {
+        pulleyViewController?.setDrawerPosition(position: .open, animated: true)
+    }
+    
+    func searchBar(_ searchBar: UISearchBar, textDidChange searchText: String) {
+        guard let mapView = delegate?.getMapView else { return }
+        let request = MKLocalSearch.Request()
+        request.naturalLanguageQuery = searchText
+        request.region = mapView.region
+        let search = MKLocalSearch(request: request)
+        search.start { response, _ in
+            guard let response = response else {
+                return
+            }
+            self.mapItems = response.mapItems
+            self.tableView.reloadData()
+        }
+        
+    }
+}
+
+extension SearchLocationViewController: UITableViewDelegate {
+    
+}
+
+extension SearchLocationViewController: UITableViewDataSource {
+    
+    func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
+        mapItems.count
+    }
+    
+    func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
+        let cell = tableView.dequeueReusableCell(withIdentifier: "reuseIdentifier", for: indexPath)
+        
+        let selectedItem = mapItems[indexPath.row].placemark
+        cell.textLabel?.text = selectedItem.name
+        cell.detailTextLabel?.text = parseAddress(selectedItem: selectedItem)
+        return cell
+    }
+    
+    func parseAddress(selectedItem:MKPlacemark) -> String {
+        // put a space between "4" and "Melrose Place"
+        let firstSpace = (selectedItem.subThoroughfare != nil && selectedItem.thoroughfare != nil) ? " " : ""
+        // put a comma between street and city/state
+        let comma = (selectedItem.subThoroughfare != nil || selectedItem.thoroughfare != nil) && (selectedItem.subAdministrativeArea != nil || selectedItem.administrativeArea != nil) ? ", " : ""
+        // put a space between "Washington" and "DC"
+        let secondSpace = (selectedItem.subAdministrativeArea != nil && selectedItem.administrativeArea != nil) ? " " : ""
+        let addressLine = String(
+            format:"%@%@%@%@%@%@%@",
+            // street number
+            selectedItem.subThoroughfare ?? "",
+            firstSpace,
+            // street name
+            selectedItem.thoroughfare ?? "",
+            comma,
+            // city
+            selectedItem.locality ?? "",
+            secondSpace,
+            // state
+            selectedItem.administrativeArea ?? ""
+        )
+        return addressLine
     }
 }
