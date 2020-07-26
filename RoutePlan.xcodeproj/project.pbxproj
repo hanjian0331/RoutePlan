@@ -19,6 +19,27 @@
 		74A1373924BF423700148250 /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 74A1373824BF423700148250 /* Assets.xcassets */; };
 		74A1373C24BF423700148250 /* LaunchScreen.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 74A1373A24BF423700148250 /* LaunchScreen.storyboard */; };
 		74A1374524BF452600148250 /* MapKit.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 74A1374424BF452600148250 /* MapKit.framework */; };
+		74B0EB9224CDC4C20043B1F9 /* WeightedGraph+shortestPath.swift in Sources */ = {isa = PBXBuildFile; fileRef = 74B0EB7D24CDC4C20043B1F9 /* WeightedGraph+shortestPath.swift */; };
+		74B0EB9324CDC4C20043B1F9 /* RouteCalculationState.swift in Sources */ = {isa = PBXBuildFile; fileRef = 74B0EB7E24CDC4C20043B1F9 /* RouteCalculationState.swift */; };
+		74B0EB9424CDC4C20043B1F9 /* PathAlgorithm.swift in Sources */ = {isa = PBXBuildFile; fileRef = 74B0EB7F24CDC4C20043B1F9 /* PathAlgorithm.swift */; };
+		74B0EB9524CDC4C20043B1F9 /* Vertex.swift in Sources */ = {isa = PBXBuildFile; fileRef = 74B0EB8024CDC4C20043B1F9 /* Vertex.swift */; };
+		74B0EB9624CDC4C20043B1F9 /* WaypointManagerState.swift in Sources */ = {isa = PBXBuildFile; fileRef = 74B0EB8124CDC4C20043B1F9 /* WaypointManagerState.swift */; };
+		74B0EB9724CDC4C20043B1F9 /* RouteSummary.swift in Sources */ = {isa = PBXBuildFile; fileRef = 74B0EB8224CDC4C20043B1F9 /* RouteSummary.swift */; };
+		74B0EB9824CDC4C20043B1F9 /* Collection+extension.swift in Sources */ = {isa = PBXBuildFile; fileRef = 74B0EB8324CDC4C20043B1F9 /* Collection+extension.swift */; };
+		74B0EB9924CDC4C20043B1F9 /* WeightedEdge.swift in Sources */ = {isa = PBXBuildFile; fileRef = 74B0EB8424CDC4C20043B1F9 /* WeightedEdge.swift */; };
+		74B0EB9A24CDC4C20043B1F9 /* CLLocationCoordinate2D+extension.swift in Sources */ = {isa = PBXBuildFile; fileRef = 74B0EB8524CDC4C20043B1F9 /* CLLocationCoordinate2D+extension.swift */; };
+		74B0EB9B24CDC4C20043B1F9 /* RouteCalculationOption.swift in Sources */ = {isa = PBXBuildFile; fileRef = 74B0EB8624CDC4C20043B1F9 /* RouteCalculationOption.swift */; };
+		74B0EB9C24CDC4C20043B1F9 /* MKError+extension.swift in Sources */ = {isa = PBXBuildFile; fileRef = 74B0EB8724CDC4C20043B1F9 /* MKError+extension.swift */; };
+		74B0EB9D24CDC4C20043B1F9 /* Route.swift in Sources */ = {isa = PBXBuildFile; fileRef = 74B0EB8824CDC4C20043B1F9 /* Route.swift */; };
+		74B0EB9E24CDC4C20043B1F9 /* MKMapView+extension.swift in Sources */ = {isa = PBXBuildFile; fileRef = 74B0EB8924CDC4C20043B1F9 /* MKMapView+extension.swift */; };
+		74B0EB9F24CDC4C20043B1F9 /* RouteStep.swift in Sources */ = {isa = PBXBuildFile; fileRef = 74B0EB8A24CDC4C20043B1F9 /* RouteStep.swift */; };
+		74B0EBA024CDC4C20043B1F9 /* Optional+extension.swift in Sources */ = {isa = PBXBuildFile; fileRef = 74B0EB8B24CDC4C20043B1F9 /* Optional+extension.swift */; };
+		74B0EBA124CDC4C20043B1F9 /* WeightedGraph.swift in Sources */ = {isa = PBXBuildFile; fileRef = 74B0EB8C24CDC4C20043B1F9 /* WeightedGraph.swift */; };
+		74B0EBA224CDC4C20043B1F9 /* WeightedGraph-dijkstaAlgorithm.swift in Sources */ = {isa = PBXBuildFile; fileRef = 74B0EB8D24CDC4C20043B1F9 /* WeightedGraph-dijkstaAlgorithm.swift */; };
+		74B0EBA324CDC4C20043B1F9 /* WeightedGraph+nearestNeighborPath.swift in Sources */ = {isa = PBXBuildFile; fileRef = 74B0EB8E24CDC4C20043B1F9 /* WeightedGraph+nearestNeighborPath.swift */; };
+		74B0EBA424CDC4C20043B1F9 /* Waypoint.swift in Sources */ = {isa = PBXBuildFile; fileRef = 74B0EB8F24CDC4C20043B1F9 /* Waypoint.swift */; };
+		74B0EBA524CDC4C20043B1F9 /* WaypointManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = 74B0EB9024CDC4C20043B1F9 /* WaypointManager.swift */; };
+		74B0EBA624CDC4C20043B1F9 /* WorkQueue.swift in Sources */ = {isa = PBXBuildFile; fileRef = 74B0EB9124CDC4C20043B1F9 /* WorkQueue.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
@@ -36,6 +57,27 @@
 		74A1373B24BF423700148250 /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/LaunchScreen.storyboard; sourceTree = "<group>"; };
 		74A1373D24BF423700148250 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
 		74A1374424BF452600148250 /* MapKit.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = MapKit.framework; path = System/Library/Frameworks/MapKit.framework; sourceTree = SDKROOT; };
+		74B0EB7D24CDC4C20043B1F9 /* WeightedGraph+shortestPath.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = "WeightedGraph+shortestPath.swift"; sourceTree = "<group>"; };
+		74B0EB7E24CDC4C20043B1F9 /* RouteCalculationState.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = RouteCalculationState.swift; sourceTree = "<group>"; };
+		74B0EB7F24CDC4C20043B1F9 /* PathAlgorithm.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = PathAlgorithm.swift; sourceTree = "<group>"; };
+		74B0EB8024CDC4C20043B1F9 /* Vertex.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Vertex.swift; sourceTree = "<group>"; };
+		74B0EB8124CDC4C20043B1F9 /* WaypointManagerState.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = WaypointManagerState.swift; sourceTree = "<group>"; };
+		74B0EB8224CDC4C20043B1F9 /* RouteSummary.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = RouteSummary.swift; sourceTree = "<group>"; };
+		74B0EB8324CDC4C20043B1F9 /* Collection+extension.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = "Collection+extension.swift"; sourceTree = "<group>"; };
+		74B0EB8424CDC4C20043B1F9 /* WeightedEdge.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = WeightedEdge.swift; sourceTree = "<group>"; };
+		74B0EB8524CDC4C20043B1F9 /* CLLocationCoordinate2D+extension.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = "CLLocationCoordinate2D+extension.swift"; sourceTree = "<group>"; };
+		74B0EB8624CDC4C20043B1F9 /* RouteCalculationOption.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = RouteCalculationOption.swift; sourceTree = "<group>"; };
+		74B0EB8724CDC4C20043B1F9 /* MKError+extension.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = "MKError+extension.swift"; sourceTree = "<group>"; };
+		74B0EB8824CDC4C20043B1F9 /* Route.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Route.swift; sourceTree = "<group>"; };
+		74B0EB8924CDC4C20043B1F9 /* MKMapView+extension.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = "MKMapView+extension.swift"; sourceTree = "<group>"; };
+		74B0EB8A24CDC4C20043B1F9 /* RouteStep.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = RouteStep.swift; sourceTree = "<group>"; };
+		74B0EB8B24CDC4C20043B1F9 /* Optional+extension.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = "Optional+extension.swift"; sourceTree = "<group>"; };
+		74B0EB8C24CDC4C20043B1F9 /* WeightedGraph.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = WeightedGraph.swift; sourceTree = "<group>"; };
+		74B0EB8D24CDC4C20043B1F9 /* WeightedGraph-dijkstaAlgorithm.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = "WeightedGraph-dijkstaAlgorithm.swift"; sourceTree = "<group>"; };
+		74B0EB8E24CDC4C20043B1F9 /* WeightedGraph+nearestNeighborPath.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = "WeightedGraph+nearestNeighborPath.swift"; sourceTree = "<group>"; };
+		74B0EB8F24CDC4C20043B1F9 /* Waypoint.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Waypoint.swift; sourceTree = "<group>"; };
+		74B0EB9024CDC4C20043B1F9 /* WaypointManager.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = WaypointManager.swift; sourceTree = "<group>"; };
+		74B0EB9124CDC4C20043B1F9 /* WorkQueue.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = WorkQueue.swift; sourceTree = "<group>"; };
 		8023DF9876E915608BA7F0A1 /* Pods-RoutePlan.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-RoutePlan.release.xcconfig"; path = "Target Support Files/Pods-RoutePlan/Pods-RoutePlan.release.xcconfig"; sourceTree = "<group>"; };
 		E85080C7658CA668B3162F4F /* Pods_RoutePlan.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Pods_RoutePlan.framework; sourceTree = BUILT_PRODUCTS_DIR; };
 /* End PBXFileReference section */
@@ -65,6 +107,7 @@
 		74A1372324BF423700148250 = {
 			isa = PBXGroup;
 			children = (
+				74B0EAF824CD84E40043B1F9 /* travelingSalesmanProblem */,
 				74A1372E24BF423700148250 /* RoutePlan */,
 				74A1372D24BF423700148250 /* Products */,
 				74A1374324BF452600148250 /* Frameworks */,
@@ -107,6 +150,34 @@
 			name = Frameworks;
 			sourceTree = "<group>";
 		};
+		74B0EAF824CD84E40043B1F9 /* travelingSalesmanProblem */ = {
+			isa = PBXGroup;
+			children = (
+				74B0EB8524CDC4C20043B1F9 /* CLLocationCoordinate2D+extension.swift */,
+				74B0EB8324CDC4C20043B1F9 /* Collection+extension.swift */,
+				74B0EB8724CDC4C20043B1F9 /* MKError+extension.swift */,
+				74B0EB8924CDC4C20043B1F9 /* MKMapView+extension.swift */,
+				74B0EB8B24CDC4C20043B1F9 /* Optional+extension.swift */,
+				74B0EB7F24CDC4C20043B1F9 /* PathAlgorithm.swift */,
+				74B0EB8824CDC4C20043B1F9 /* Route.swift */,
+				74B0EB8624CDC4C20043B1F9 /* RouteCalculationOption.swift */,
+				74B0EB7E24CDC4C20043B1F9 /* RouteCalculationState.swift */,
+				74B0EB8A24CDC4C20043B1F9 /* RouteStep.swift */,
+				74B0EB8224CDC4C20043B1F9 /* RouteSummary.swift */,
+				74B0EB8024CDC4C20043B1F9 /* Vertex.swift */,
+				74B0EB8F24CDC4C20043B1F9 /* Waypoint.swift */,
+				74B0EB9024CDC4C20043B1F9 /* WaypointManager.swift */,
+				74B0EB8124CDC4C20043B1F9 /* WaypointManagerState.swift */,
+				74B0EB8424CDC4C20043B1F9 /* WeightedEdge.swift */,
+				74B0EB8D24CDC4C20043B1F9 /* WeightedGraph-dijkstaAlgorithm.swift */,
+				74B0EB8C24CDC4C20043B1F9 /* WeightedGraph.swift */,
+				74B0EB8E24CDC4C20043B1F9 /* WeightedGraph+nearestNeighborPath.swift */,
+				74B0EB7D24CDC4C20043B1F9 /* WeightedGraph+shortestPath.swift */,
+				74B0EB9124CDC4C20043B1F9 /* WorkQueue.swift */,
+			);
+			path = travelingSalesmanProblem;
+			sourceTree = "<group>";
+		};
 /* End PBXGroup section */
 
 /* Begin PBXNativeTarget section */
@@ -125,6 +196,8 @@
 			dependencies = (
 			);
 			name = RoutePlan;
+			packageProductDependencies = (
+			);
 			productName = RoutePlan;
 			productReference = 74A1372C24BF423700148250 /* RoutePlan.app */;
 			productType = "com.apple.product-type.application";
@@ -153,6 +226,8 @@
 				Base,
 			);
 			mainGroup = 74A1372324BF423700148250;
+			packageReferences = (
+			);
 			productRefGroup = 74A1372D24BF423700148250 /* Products */;
 			projectDirPath = "";
 			projectRoot = "";
@@ -225,10 +300,31 @@
 			files = (
 				7473E16524C5CE3300801B40 /* LocationsTableViewController.swift in Sources */,
 				7473E16B24CB0B0500801B40 /* HJPulleyViewController.swift in Sources */,
+				74B0EB9724CDC4C20043B1F9 /* RouteSummary.swift in Sources */,
+				74B0EB9924CDC4C20043B1F9 /* WeightedEdge.swift in Sources */,
+				74B0EBA224CDC4C20043B1F9 /* WeightedGraph-dijkstaAlgorithm.swift in Sources */,
+				74B0EBA024CDC4C20043B1F9 /* Optional+extension.swift in Sources */,
+				74B0EBA624CDC4C20043B1F9 /* WorkQueue.swift in Sources */,
+				74B0EB9224CDC4C20043B1F9 /* WeightedGraph+shortestPath.swift in Sources */,
+				74B0EB9524CDC4C20043B1F9 /* Vertex.swift in Sources */,
+				74B0EB9A24CDC4C20043B1F9 /* CLLocationCoordinate2D+extension.swift in Sources */,
+				74B0EB9424CDC4C20043B1F9 /* PathAlgorithm.swift in Sources */,
+				74B0EB9624CDC4C20043B1F9 /* WaypointManagerState.swift in Sources */,
+				74B0EB9D24CDC4C20043B1F9 /* Route.swift in Sources */,
+				74B0EB9E24CDC4C20043B1F9 /* MKMapView+extension.swift in Sources */,
+				74B0EBA324CDC4C20043B1F9 /* WeightedGraph+nearestNeighborPath.swift in Sources */,
 				74A1373424BF423700148250 /* MapViewController.swift in Sources */,
 				7473E16E24CB0F4A00801B40 /* SearchLocationViewController.swift in Sources */,
+				74B0EB9324CDC4C20043B1F9 /* RouteCalculationState.swift in Sources */,
 				74A1373024BF423700148250 /* AppDelegate.swift in Sources */,
+				74B0EBA424CDC4C20043B1F9 /* Waypoint.swift in Sources */,
 				74A1373224BF423700148250 /* SceneDelegate.swift in Sources */,
+				74B0EBA124CDC4C20043B1F9 /* WeightedGraph.swift in Sources */,
+				74B0EB9B24CDC4C20043B1F9 /* RouteCalculationOption.swift in Sources */,
+				74B0EB9F24CDC4C20043B1F9 /* RouteStep.swift in Sources */,
+				74B0EB9C24CDC4C20043B1F9 /* MKError+extension.swift in Sources */,
+				74B0EBA524CDC4C20043B1F9 /* WaypointManager.swift in Sources */,
+				74B0EB9824CDC4C20043B1F9 /* Collection+extension.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -304,7 +400,7 @@
 				GCC_WARN_UNINITIALIZED_AUTOS = YES_AGGRESSIVE;
 				GCC_WARN_UNUSED_FUNCTION = YES;
 				GCC_WARN_UNUSED_VARIABLE = YES;
-				IPHONEOS_DEPLOYMENT_TARGET = 11.0;
+				IPHONEOS_DEPLOYMENT_TARGET = 10.0;
 				MTL_ENABLE_DEBUG_INFO = INCLUDE_SOURCE;
 				MTL_FAST_MATH = YES;
 				ONLY_ACTIVE_ARCH = YES;
@@ -358,7 +454,7 @@
 				GCC_WARN_UNINITIALIZED_AUTOS = YES_AGGRESSIVE;
 				GCC_WARN_UNUSED_FUNCTION = YES;
 				GCC_WARN_UNUSED_VARIABLE = YES;
-				IPHONEOS_DEPLOYMENT_TARGET = 11.0;
+				IPHONEOS_DEPLOYMENT_TARGET = 10.0;
 				MTL_ENABLE_DEBUG_INFO = NO;
 				MTL_FAST_MATH = YES;
 				SDKROOT = iphoneos;
@@ -381,6 +477,7 @@
 					"$(inherited)",
 					"@executable_path/Frameworks",
 				);
+				OTHER_CFLAGS = "";
 				PRODUCT_BUNDLE_IDENTIFIER = com.hj.RoutePlan;
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				SUPPORTS_MACCATALYST = NO;
@@ -402,6 +499,7 @@
 					"$(inherited)",
 					"@executable_path/Frameworks",
 				);
+				OTHER_CFLAGS = "";
 				PRODUCT_BUNDLE_IDENTIFIER = com.hj.RoutePlan;
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				SUPPORTS_MACCATALYST = NO;

@@ -11,7 +11,7 @@ import MapKit
 
 protocol SearchLocationDelegate: class {
     var getMapView: MKMapView? { get }
-    
+    func addDestination(newDestination: MKMapItem)
 }
 
 class SearchLocationViewController: UIViewController {
@@ -114,6 +114,10 @@ extension SearchLocationViewController: UISearchBarDelegate {
         pulleyViewController?.setDrawerPosition(position: .open, animated: true)
     }
     
+    func searchBarTextDidEndEditing(_ searchBar: UISearchBar) {
+        pulleyViewController?.setDrawerPosition(position: .collapsed, animated: true)
+    }
+    
     func searchBar(_ searchBar: UISearchBar, textDidChange searchText: String) {
         guard let mapView = delegate?.getMapView else { return }
         let request = MKLocalSearch.Request()
@@ -127,12 +131,62 @@ extension SearchLocationViewController: UISearchBarDelegate {
             self.mapItems = response.mapItems
             self.tableView.reloadData()
         }
-        
     }
+    
 }
 
 extension SearchLocationViewController: UITableViewDelegate {
-    
+    func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
+        pulleyViewController?.setDrawerPosition(position: .collapsed, animated: true)
+        
+//        guard let mapView = delegate?.getMapView else { return }
+        let selectedMapItem = mapItems[indexPath.row]
+        delegate?.addDestination(newDestination: selectedMapItem)
+        
+        tableView.deselectRow(at: indexPath, animated: true)
+
+        
+        
+        
+//        let request = MKDirections.Request()
+//        request.source = MKMapItem(placemark: MKPlacemark(coordinate: mapView.region.center))
+//        request.destination = selectedMapItem
+//
+//        let directions = MKDirections(request: request)
+//        directions.calculate { response, error in
+//            guard let response = response else {
+//                if let error = error {
+//                    print("Error: \(error)")
+//                }
+//
+//                return
+//            }
+//
+//            let route = response.routes[0]
+//            mapView.addOverlay((route.polyline), level: MKOverlayLevel.aboveRoads)
+//
+//            let rect = route.polyline.boundingMapRect
+//            mapView.setRegion(MKCoordinateRegion(rect), animated: true)
+//        }
+//        guard let mapView = delegate?.getMapView else { return }
+//        mapView.removeAnnotations(mapView.annotations)
+//        var annotations = [MKAnnotation]()
+//        for mapItem in mapItems {
+//            let annotation = MKPointAnnotation()
+//            annotation.coordinate = mapItem.placemark.coordinate
+//            annotation.title = mapItem.placemark.title
+//            if let city = mapItem.placemark.locality, let state = mapItem.placemark.administrativeArea {
+//                annotation.subtitle = "\(city) \(state)"
+//            }
+//            annotations.append(annotation)
+//        }
+//        mapView.addAnnotations(annotations)
+//
+//        let selectedMapItem = mapItems[indexPath.row]
+//        let span = MKCoordinateSpan.init(latitudeDelta: 0.05, longitudeDelta: 0.05)
+//        let region = MKCoordinateRegion.init(center: selectedMapItem.placemark.coordinate, span: span)
+//        mapView.setRegion(region, animated: true)
+    }
 }
 
 extension SearchLocationViewController: UITableViewDataSource {
