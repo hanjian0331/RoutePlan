@@ -7,16 +7,16 @@
       <BreakpointProxy
          BreakpointExtensionID = "Xcode.Breakpoint.FileBreakpoint">
          <BreakpointContent
-            uuid = "DF75A18A-C468-4225-90D6-10FAF1031E31"
+            uuid = "8217EAE0-19D0-46F6-BDA3-03ECFD6020B8"
             shouldBeEnabled = "Yes"
             ignoreCount = "0"
             continueAfterRunningActions = "No"
-            filePath = "model/WeightedGraph.swift"
+            filePath = "traveling-salesman-problem/RouteSummaryController.swift"
             startingColumnNumber = "9223372036854775807"
             endingColumnNumber = "9223372036854775807"
-            startingLineNumber = "50"
-            endingLineNumber = "50"
-            landmarkName = "insertVertex(_:)"
+            startingLineNumber = "45"
+            endingLineNumber = "45"
+            landmarkName = "updateRouteSummary()"
             landmarkType = "7">
          </BreakpointContent>
       </BreakpointProxy>

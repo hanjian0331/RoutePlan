@@ -19,6 +19,7 @@ class MapViewController: UIViewController {
     let waypointManager = WaypointManager()
     var selectedWaypoint: Waypoint?
     let mapPadding = UIEdgeInsets(top: 60, left: 60, bottom: 60, right: 60)
+    let colors = [UIColor.systemRed,.systemGreen,.systemBlue,.systemOrange,.systemYellow,.systemPink,.systemPurple,.systemTeal,.systemPurple,.systemGray]
     
     override func viewDidLoad() {
         super.viewDidLoad()
@@ -29,6 +30,7 @@ class MapViewController: UIViewController {
         locationManager.requestLocation()
         
         waypointManager.delegate = self
+        mapView.register(LabelMKPinAnnotationView.self, forAnnotationViewWithReuseIdentifier: annotationIdentifier)
         
         let latitude = UserDefaults.standard.double(forKey: "latitude")
         let longitude = UserDefaults.standard.double(forKey: "longitude")
@@ -81,7 +83,7 @@ extension MapViewController: MKMapViewDelegate {
         if annotation is MKUserLocation {
             return nil
         }
-        let view = mapView.dequeueReusableAnnotationView(withIdentifier: annotationIdentifier) as? MKPinAnnotationView ?? MKPinAnnotationView(annotation: nil, reuseIdentifier: annotationIdentifier)
+        let view = mapView.dequeueReusableAnnotationView(withIdentifier: annotationIdentifier) as? LabelMKPinAnnotationView ?? LabelMKPinAnnotationView(annotation: nil, reuseIdentifier: annotationIdentifier)
         
         view.annotation = annotation
         view.animatesDrop = true
@@ -98,6 +100,8 @@ extension MapViewController: MKMapViewDelegate {
     private func updateView(_ view: MKPinAnnotationView, for annotation: Waypoint) {
         let isStart = waypointManager.startWaypoint == annotation
         view.pinTintColor = isStart ? MKPinAnnotationView.greenPinColor() : MKPinAnnotationView.redPinColor()
+        
+        
     }
     
     func mapView(_ mapView: MKMapView, didSelect view: MKAnnotationView) {
@@ -117,9 +121,14 @@ extension MapViewController: MKMapViewDelegate {
     }
     
     //route renderer
+    
     func mapView(_ mapView: MKMapView, rendererFor overlay: MKOverlay) -> MKOverlayRenderer {
         let renderer = MKPolylineRenderer(polyline: overlay as! MKPolyline)
-        renderer.strokeColor = #colorLiteral(red: 0.06485579908, green: 0.5960159898, blue: 0.9942656159, alpha: 1)
+        
+        if let index = mapView.overlays.firstIndex(where: { return $0.isEqual(overlay) }) {
+            renderer.strokeColor = colors[index % colors.count]
+        }
+        
         return renderer
     }
 }
@@ -190,8 +199,20 @@ extension MapViewController: WaypointManagerDelegate {
         let mapRects = overlays.map({ $0.boundingMapRect })
         mapView.setVisibleMapRects(mapRects, edgePadding: mapPadding, animated: true)
         
-//        let routeSummary = RouteSummary(routes: shortesPath)
+        let routeSummary = RouteSummary(routes: shortesPath)
+        let routeSteps = routeSummary.routeSteps(for: Date(), transferTime: 0)
 //        routeSummaryController.routeSummary = routeSummary
+        for waypoint in waypointManager.waypoints {
+            if let view = mapView.view(for: waypoint) as? LabelMKPinAnnotationView {
+
+                if let index = routeSteps.firstIndex(where: { $0.source == waypoint }) {
+                    view.text = "\(index + 1)"
+                }
+                
+            }
+        }
+
+        
     }
     
     func didChangeWaypointManagerState(from oldState: WaypointManagerState, to newState: WaypointManagerState) {
