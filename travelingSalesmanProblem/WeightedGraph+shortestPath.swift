@@ -32,16 +32,16 @@ extension WeightedGraph {
         //path is not posible
         if path.count == requiredPathLength {
             //route not possible
-            guard let edgeToStart = nextEdges.first(where: { $0.destination == start }) else {
-                return (newComplexity, nil)
-            }
-            
-            var newPath = path
-            newPath.append(start)
-            var newEdges = edges
-            newEdges.append(edgeToStart)
-            let newWeight = weightSummed + edgeToStart.weight
-            return (newComplexity, (newWeight, newPath, newEdges))
+//            guard let edgeToStart = nextEdges.first(where: { $0.destination == start }) else {
+//                return (newComplexity, nil)
+//            }
+            return (newComplexity, (weightSummed, path, edges))
+//            var newPath = path
+//            newPath.append(start)
+//            var newEdges = edges
+//            newEdges.append(edgeToStart)
+//            let newWeight = weightSummed + edgeToStart.weight
+//            return (newComplexity, (newWeight, newPath, newEdges))
         }
         //only try edges with destination which we did not already visit
         let posibleEdges = nextEdges.filter { (nextEdge: E) -> Bool in

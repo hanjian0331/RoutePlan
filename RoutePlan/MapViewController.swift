@@ -32,6 +32,9 @@ class MapViewController: UIViewController {
         waypointManager.delegate = self
         mapView.register(LabelMKPinAnnotationView.self, forAnnotationViewWithReuseIdentifier: annotationIdentifier)
         
+        let gestureRecognizer = UILongPressGestureRecognizer(target: self, action: #selector(addAnotation(_:)))
+        mapView.addGestureRecognizer(gestureRecognizer)
+        
         let latitude = UserDefaults.standard.double(forKey: "latitude")
         let longitude = UserDefaults.standard.double(forKey: "longitude")
         if latitude != 0 && longitude != 0  {
@@ -44,6 +47,22 @@ class MapViewController: UIViewController {
     
     @IBAction func locationButtonAction(_ sender: UIButton) {
         locationManager.requestLocation()
+    }
+    
+    @objc func addAnotation(_ sender: UILongPressGestureRecognizer) {
+        if sender.state != .began {
+            return
+        }
+//        guard modifyingAnotationsEnabled else {
+//            return
+//        }
+        let clickLocation = sender.location(in: mapView)
+        let coordinate = mapView.convert(clickLocation, toCoordinateFrom: mapView)
+        
+        let waypoint = Waypoint(location: coordinate)
+        
+        waypointManager.add(waypoint)
+        
     }
     
     deinit {
@@ -89,7 +108,11 @@ extension MapViewController: MKMapViewDelegate {
         view.animatesDrop = true
         view.canShowCallout = true
         
-        
+        let rightButton = UIButton(type: .detailDisclosure)
+        rightButton.setImage(UIImage(systemName: "trash.circle.fill")?.withRenderingMode(.alwaysOriginal), for: .normal)
+        rightButton.addTarget(self, action: #selector(deleteSelectedWaypoint), for: .touchUpInside)
+        view.rightCalloutAccessoryView = rightButton
+    
         if let waypoint = annotation as? Waypoint {
             updateView(view, for: waypoint)
         }
@@ -100,24 +123,41 @@ extension MapViewController: MKMapViewDelegate {
     private func updateView(_ view: MKPinAnnotationView, for annotation: Waypoint) {
         let isStart = waypointManager.startWaypoint == annotation
         view.pinTintColor = isStart ? MKPinAnnotationView.greenPinColor() : MKPinAnnotationView.redPinColor()
-        
-        
+    }
+    
+    @objc func deleteSelectedWaypoint() {
+        guard let selectedWaypoint = selectedWaypoint else {
+            return
+        }
+        deselectWaypoint()
+        waypointManager.remove(selectedWaypoint)
+    }
+    
+    func showCalculatedRouteIfFound() {
+        mapView.removeOverlays(mapView.overlays)
+        guard case(.calculatedBestPath(let path)) = waypointManager.state else {
+            return
+        }
+        let overlays = path.map{ (route) -> MKPolyline in
+            return route.polyline
+        }
+        mapView.addOverlays(overlays)
     }
     
     func mapView(_ mapView: MKMapView, didSelect view: MKAnnotationView) {
-//        guard let annotation = view.annotation else {
-//            print("annotation view selected without an annoation")
-//            return
-//        }
-//        guard let waypoint = annotation as? Waypoint else {
-//            print("annotation \(annotation) selected which is not a waypoint")
-//            return
-//        }
-//        selectWaypoint(waypoint)
+        guard let annotation = view.annotation else {
+            print("annotation view selected without an annoation")
+            return
+        }
+        guard let waypoint = annotation as? Waypoint else {
+            print("annotation \(annotation) selected which is not a waypoint")
+            return
+        }
+        selectWaypoint(waypoint)
     }
     
     func mapView(_ mapView: MKMapView, didDeselect view: MKAnnotationView) {
-//        deselectWaypoint()
+        deselectWaypoint()
     }
     
     //route renderer
@@ -130,6 +170,48 @@ extension MapViewController: MKMapViewDelegate {
         }
         
         return renderer
+    }
+    
+    func selectWaypoint(_ waypoint: Waypoint) {
+        guard waypointManager.rowIndex(for: waypoint) != nil else {
+            print("cannot select waypoint \(waypoint) because it is not present in the model")
+            return
+        }
+        
+        selectedWaypoint = waypoint
+        
+        //select annotaion on map
+        let selectedWaypointsOnMap = mapView.selectedAnnotations.compactMap { (annotation) -> Waypoint? in
+            return annotation as? Waypoint
+        }
+        //only select if it is not already selected
+        if !selectedWaypointsOnMap.contains(where: { $0 == waypoint }) {
+            mapView.selectAnnotation(waypoint, animated: true)
+        }
+        //select waypoint in table
+        //only select if it is not already selected
+//        if waypointTableView.selectedRow != rowIndex {
+//            waypointTableView.selectRowIndexes([rowIndex], byExtendingSelection: false)
+//        }
+        
+        if let routes = waypointManager.routesStarting(from: waypoint) {
+            print(routes.count)
+            mapView.removeOverlays(mapView.overlays)
+            let overlays = routes.map{ (route) -> MKPolyline in
+                return route.polyline
+            }
+            mapView.addOverlays(overlays)
+        }
+    }
+    
+    func deselectWaypoint() {
+        selectedWaypoint = nil
+        //deselect annotaion on map
+        for selectedAnnotaiton in mapView.selectedAnnotations {
+            mapView.deselectAnnotation(selectedAnnotaiton, animated: true)
+        }
+//        waypointTableView.deselectAll(self)
+        showCalculatedRouteIfFound()
     }
 }
 
@@ -189,7 +271,7 @@ extension MapViewController: WaypointManagerDelegate {
     }
     
     func didCalucate(shortesPath: [Route]) {
-//        deselectWaypoint()
+        deselectWaypoint()
         mapView.removeOverlays(mapView.overlays)
         let overlays = shortesPath.map {
             return $0.polyline
@@ -205,8 +287,25 @@ extension MapViewController: WaypointManagerDelegate {
         for waypoint in waypointManager.waypoints {
             if let view = mapView.view(for: waypoint) as? LabelMKPinAnnotationView {
 
+//                for (index, routeStep) in routeSteps.enumerated() {
+//                    if index == 0 {
+//                        view.text = "起点"
+//                    } else if index == routeSteps.count - 1 {
+//                        view.text = "终点"
+//                    } else if routeStep.source == waypoint {
+//                        view.text = "\(index + 1)"
+//                    } else if routeStep.destination == waypoint {
+//                        view.text = "\(index + 2)"
+//                    }
+//                }
+                
                 if let index = routeSteps.firstIndex(where: { $0.source == waypoint }) {
                     view.text = "\(index + 1)"
+                    continue
+                }
+                if let index = routeSteps.firstIndex(where: { $0.destination == waypoint }) {
+                    view.text = "\(index + 2)"
+                    continue
                 }
                 
             }
@@ -216,11 +315,20 @@ extension MapViewController: WaypointManagerDelegate {
     }
     
     func didChangeWaypointManagerState(from oldState: WaypointManagerState, to newState: WaypointManagerState) {
-        
+//        updateStateMangerStatusUI(state: newState)
     }
     
     func willRemove(waypoint: Waypoint) {
-        
+        guard waypointManager.rowIndex(for: waypoint) != nil else {
+            print("cannot remove waypoint \(waypoint) which is not present in the model")
+            return
+        }
+        //update map
+        mapView.removeAnnotation(waypoint)
+        //update table
+//        waypointTableView.beginUpdates()
+//        waypointTableView.removeRows(at: [rowIndex], withAnimation: NSTableView.AnimationOptions.slideUp)
+//        waypointTableView.endUpdates()
     }
     
     func didRemove(waypoint: Waypoint) {
