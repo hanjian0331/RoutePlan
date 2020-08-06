@@ -109,10 +109,17 @@ extension MapViewController: MKMapViewDelegate {
         view.canShowCallout = true
         
         let rightButton = UIButton(type: .detailDisclosure)
-        rightButton.setImage(UIImage(systemName: "trash.circle.fill")?.withRenderingMode(.alwaysOriginal), for: .normal)
+        if #available(iOS 13.0, *) {
+            rightButton.setImage(UIImage(systemName: "trash.circle.fill")?.withRenderingMode(.alwaysOriginal), for: .normal)
+        } else {
+            rightButton.setImage(UIImage(named: "trash"), for: .normal)
+        }
         rightButton.addTarget(self, action: #selector(deleteSelectedWaypoint), for: .touchUpInside)
         view.rightCalloutAccessoryView = rightButton
     
+        let leftButton = UIButton(type: .detailDisclosure)
+        view.leftCalloutAccessoryView = leftButton
+        
         if let waypoint = annotation as? Waypoint {
             updateView(view, for: waypoint)
         }
