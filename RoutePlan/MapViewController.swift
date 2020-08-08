@@ -25,7 +25,7 @@ class MapViewController: UIViewController {
         super.viewDidLoad()
         
         locationManager.delegate = self
-        locationManager.desiredAccuracy = kCLLocationAccuracyBest
+        locationManager.desiredAccuracy = kCLLocationAccuracyNearestTenMeters
         locationManager.requestWhenInUseAuthorization()
         locationManager.requestLocation()
         
@@ -79,6 +79,9 @@ extension MapViewController : CLLocationManagerDelegate {
     }
     
     func locationManager(_ manager: CLLocationManager, didUpdateLocations locations: [CLLocation]) {
+        if waypointManager.waypoints.count > 0 {
+            return
+        }
         if let location = locations.first {
             let span = MKCoordinateSpan.init(latitudeDelta: 0.05, longitudeDelta: 0.05)
             let region = MKCoordinateRegion(center: location.coordinate, span: span)
@@ -231,6 +234,15 @@ extension MapViewController: SearchLocationDelegate {
     }
     
     func addDestination(newDestination: MKMapItem) {
+        if let nowLocation = nowLocation, waypointManager.waypoints.count == 0 {
+            let waypoint = Waypoint(location: nowLocation.placemark.coordinate)
+            waypointManager.add(waypoint)
+        }
+        
+        let span = MKCoordinateSpan.init(latitudeDelta: 0.05, longitudeDelta: 0.05)
+        let region = MKCoordinateRegion(center: newDestination.placemark.coordinate, span: span)
+        mapView.setRegion(region, animated: true)
+        
         let waypoint = Waypoint(location: newDestination.placemark.coordinate)
         waypointManager.add(waypoint)
     }
